@@ -4,7 +4,7 @@ import time
 import datetime
 
 version = "0.0.2"
-github_link = "https://github.com/maciejszulia/discordchan"
+github_link = str("https://github.com/maciejszulia/discordchan")
 
 # Pobierz aktualny czas i datę
 current_time = datetime.datetime.now()
@@ -32,10 +32,10 @@ async def on_ready():
 
     if channel is not None:
         await channel.send(
-            'online at ' + str(current_time) + '\n'+
-            'current ver: '+ version + '\n' +
-            + github_link
-            )
+            'online at ' + str(current_time) + '\n' +
+            'current ver: ' + version + '\n' +
+            github_link
+        )
     else:
         print('channel not found')
 
@@ -48,3 +48,5 @@ async def ping(ctx):
         await channel.send('pong')
 # Uruchom bota
 bot.run(TOKEN)
+
+
