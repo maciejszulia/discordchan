@@ -1,8 +1,10 @@
 import discord
 from discord.ext import commands
 import time
-
 import datetime
+
+version = "0.0.2"
+github_link = "https://github.com/maciejszulia/discordchan"
 
 # Pobierz aktualny czas i datę
 current_time = datetime.datetime.now()
@@ -10,10 +12,8 @@ current_time = datetime.datetime.now()
 # Wyświetl aktualny czas
 print("Aktualny czas:", current_time)
 
-
-# Ustal token bota
-TOKEN = 'Nzc5MDAyNDA4MTAxNDc4NDAw.Gi8Vzx.5XCLixJB4dP3B-ZynLhfOChvfI-dCP8SokDM2c'
-
+print(f'TOKEN = ')
+TOKEN = input()
 
 # Utwórz instancję klienta i zdefiniuj intencje
 intents = discord.Intents.default()
@@ -26,17 +26,25 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} online at {current_time}')
+    
+    # Znajdź kanał o nazwie "#test-1" na serwerze
+    channel = discord.utils.get(bot.get_all_channels(), name='test-1')
 
-# Dodaj komendę !witaj
-# @bot.command()
-# async def witaj(ctx):
-#     # Pobierz kanał o nazwie "#test-1" na serwerze
-#     channel = discord.utils.get(ctx.guild.channels, name='test-1')
+    if channel is not None:
+        await channel.send(
+            'online at ' + str(current_time) + '\n'+
+            'current ver: '+ version + '\n' +
+            + github_link
+            )
+    else:
+        print('channel not found')
 
-#     if channel is not None:
-#         await channel.send(f'Witaj, {ctx.author.mention} w kanale {channel.mention}!')
-#     else:
-#         await ctx.send('Kanał "#test-1" nie został znaleziony na serwerze.')
+@bot.command()
+async def ping(ctx):
+    # Odpowiedz "pong" w kanale "#test-1"
+    channel = discord.utils.get(ctx.guild.channels, name='test-1')
 
+    if channel is not None:
+        await channel.send('pong')
 # Uruchom bota
 bot.run(TOKEN)
