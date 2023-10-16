@@ -3,11 +3,13 @@ from discord.ext import commands
 import time
 import datetime
 import tokenhelper
+import versionhelper
 
 TOKEN = tokenhelper.get_token()
 print(tokenhelper.get_token())
 
-version = "0.0.2"
+version = versionhelper.get_version()
+print(version)
 github_link = str("https://github.com/maciejszulia/discordchan")
 
 # current_time = datetime.datetime.now()
