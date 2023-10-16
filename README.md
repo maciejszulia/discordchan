@@ -1,3 +1,5 @@
 # ksalol-chan alpha
 
-![Opis obrazu](ksalol-sama.png)
+![Ksalol-sama](ksalol-sama.png)
+*don't worry, she will comfort you ~~
+just let her...*
