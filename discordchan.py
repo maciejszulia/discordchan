@@ -4,6 +4,9 @@ import datetime
 import tokenhelper
 import versionhelper
 
+KSALOL_SAMA = "https://raw.githubusercontent.com/maciejszulia/discordchan/master/ksalol-sama.png"
+KSALOL_SAMA_LOCAL = "./ksalol-sama.png"
+
 TOKEN = tokenhelper.get_token()
 print(tokenhelper.get_token())
 
@@ -33,12 +36,11 @@ async def on_ready():
         await channel.send(
             'online at ' + str(datetime.datetime.now()) + '\n' +
             'current ver: ' + version + '\n' +
-            github_link
+            KSALOL_SAMA
         )
     else:
         print('channel not found')
         
-
 # Uruchom bota
 bot.run(TOKEN)
 
