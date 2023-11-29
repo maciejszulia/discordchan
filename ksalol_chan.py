@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 from datetime import datetime
-import tokenhelper
-import versionhelper
+import token_helper
+import version_helper
 import responses
 from legacy import client
 
@@ -11,10 +11,12 @@ KSALOL_SAMA = "https://raw.githubusercontent.com/maciejszulia/discordchan/master
 KSALOL_SAMA_BG = "https://raw.githubusercontent.com/maciejszulia/discordchan/master/ksalol-sama/ksalol-sama-background.png"
 KSALOL_SAMA_LOCAL = "./ksalol-sama.png"
 
+
+TOKEN = token_helper.get_token()
 # WATCH OUT!
 # print(f'TOKEN  = {tokenhelper.get_token()}')
 
-VERSION = versionhelper.get_version()
+VERSION = version_helper.get_version()
 print(VERSION)
 github_link = "github.com/maciejszulia/discordchan"
 
@@ -22,10 +24,10 @@ github_link = "github.com/maciejszulia/discordchan"
 print("current_time =", datetime.now())
 
 # Utwórz instancję klienta i zdefiniuj intencje
-intents = discord.Intents.default()
-intents.message_content = True
+# intents = discord.Intents.default()
+# intents.message_content = True
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), intents=intents)
+# bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), intents=intents)
 
 # # Funkcja uruchamiana przy starcie bota
 # @bot.event
@@ -46,6 +48,8 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), intents=inten
         
 # # Uruchom bota
 
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'))
+
 async def send_msg(msg, user_msg, is_private):
     try:
         response = responses.get_response(user_msg)
@@ -65,7 +69,7 @@ def run_ksalol_sama():
 
     @bot.event
     async def on_ready():
-        print(f'{bot.user.name} online at {datetime.now()}')   
+        print(f'{bot.user.name} online at {datetime.now()}')  
         
     @client.event
     async def on_message(msg):
@@ -85,5 +89,5 @@ def run_ksalol_sama():
             await send_msg(msg,user_msg, is_private=False)
             
     
-    TOKEN = tokenhelper.get_token()
-    bot.run(TOKEN)
+    
+    bot.run("Nzc5MDAyNDA4MTAxNDc4NDAw.GrFDZD.CQ2tb1QYgR4Az_3cU50J1-KZxIbQaXW5hvm33A")
