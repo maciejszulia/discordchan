@@ -10,8 +10,7 @@ Setup:
 Windows Powershell
 `python.exe -m pip install --upgrade pip ; pip install -r requirements.txt`
 Linux
-`python -m pip install --upgrade pip && pip install -r requirements.txt` 
-<br>
+`python -m pip install --upgrade pip && pip install -r requirements.txt`
 2. Running:  
 Windows Powershell
 `python.exe .\ksalol-chan-dev.py`
