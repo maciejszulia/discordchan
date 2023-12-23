@@ -90,4 +90,4 @@ def run_ksalol_sama():
             
     
     
-    bot.run("Nzc5MDAyNDA4MTAxNDc4NDAw.GrFDZD.CQ2tb1QYgR4Az_3cU50J1-KZxIbQaXW5hvm33A")
+    bot.run(TOKEN)
