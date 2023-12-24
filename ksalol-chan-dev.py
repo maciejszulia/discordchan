@@ -1,25 +1,31 @@
 import discord
 import datetime
-from discord import message
 import random
 import os
 import token_helper
 
-
-TOKEN = token_helper.get_token()
+token = token_helper.get_token()
 
 class MyClient(discord.Client):
-    @bot.event
-    async def on_ready():
-        print(f'{bot.user.name} online at {datetime.now()}')  
+    intents = discord.Intents.default()
+    intents.message_content = True
+    client = discord.Client(intents=intents)
+
+    async def on_ready(self):
+        print(f'{self.user.name} online at {datetime.datetime.now()}')  
+
+        # Assuming you want to send a message in a specific channel with ID '779002907709145088'
+        channel = self.get_channel(779002907709145088)
+        
+        if channel:
+            await channel.send('sram')
+        else:
+            print(f"Channel with ID {channel} not found.")
 
     async def on_message(self, message):
         # don't respond to ourselves
         if message.author == self.user:
             return
-        
-    async def on_ready(self):
-        await discord.TextChannel.message.send('sram')
-        
+
 client = MyClient(intents=discord.Intents.default())
-client.run(TOKEN)
+client.run(token)

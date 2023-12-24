@@ -10,7 +10,7 @@ Setup:
 Windows Powershell<br>
 `python.exe -m pip install --upgrade pip ; pip install -r requirements.txt`<br>
 Linux<br>
-`python -m pip install --upgrade pip && pip install -r requirements.txt`<br>
+`source .venv/bin/activate && python -m pip install --upgrade pip && pip install -r requirements.txt`<br>
 2. Running:  
 Windows Powershell<br>
 `python.exe .\ksalol-chan-dev.py`<br>
