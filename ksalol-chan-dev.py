@@ -2,9 +2,9 @@ import discord
 import datetime
 import random
 import os
-import token_helper
+from token_helper import get_token
 
-token = token_helper.get_token()
+token = get_token()
 
 class MyClient(discord.Client):
     intents = discord.Intents.default()
@@ -12,13 +12,11 @@ class MyClient(discord.Client):
     client = discord.Client(intents=intents)
 
     async def on_ready(self):
-        print(f'{self.user.name} online at {datetime.datetime.now()}')  
-
-        # Assuming you want to send a message in a specific channel with ID '779002907709145088'
+        print(f'{self.user.name} online at {datetime.datetime.now()}')
         channel = self.get_channel(779002907709145088)
         
         if channel:
-            await channel.send('sram')
+            await channel.send('chuj')
         else:
             print(f"Channel with ID {channel} not found.")
 
