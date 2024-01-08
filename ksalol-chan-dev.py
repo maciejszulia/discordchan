@@ -1,29 +1,35 @@
 import discord
 import datetime
-import random
-import os
 from token_helper import get_token
+import asyncio
 
 token = get_token()
 
 class MyClient(discord.Client):
-    intents = discord.Intents.default()
-    intents.message_content = True
-    client = discord.Client(intents=intents)
+    def __init__(self, *args, **kwargs):
+        intents = kwargs.pop('intents', discord.Intents.default())
+        intents.message_content = True
+        super().__init__(*args, intents=intents, **kwargs)
 
     async def on_ready(self):
+        await self.change_presence(activity=discord.Game(name=f"jebac zydow at {datetime.datetime.now()}"))
         print(f'{self.user.name} online at {datetime.datetime.now()}')
-        channel = self.get_channel(779002907709145088)
+        channel_id = 779002907709145088  # Replace with your channel ID
+        channel = self.get_channel(channel_id)
         
         if channel:
-            await channel.send('chuj')
-        else:
-            print(f"Channel with ID {channel} not found.")
+            print(f"{datetime.datetime.now()}: At: channel with ID {channel}")
 
-    async def on_message(self, message):
-        # don't respond to ourselves
-        if message.author == self.user:
-            return
+            # Fetch the last 5 messages in the channel
+            async def get_messages():
+                return [message async for message in channel.history(limit=5)]
+            
+            messages = await asyncio.gather(get_messages())
 
-client = MyClient(intents=discord.Intents.default())
+            # Print the content of each message
+            for message in messages[0]:
+                pass
+                # await channel.send(f"Message from {message.author}: {message.content}")
+
+client = MyClient()
 client.run(token)
